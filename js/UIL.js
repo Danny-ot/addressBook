@@ -21,4 +21,8 @@ $(document).ready(function(){
         
 
     })
+    $("#add").click(function(){
+        $(".form-contacts").show();
+        $("#add-con").hide();
+    })
 })
