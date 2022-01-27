@@ -28,7 +28,7 @@ $(document).ready(function(){
     //Add Button
     $("#add").click(function(){
         $(".form-contacts").show();
-        $("#add-con").hide();
+        
     })
 
     //Contacts Form 
@@ -46,7 +46,7 @@ $(document).ready(function(){
             $(".warn").hide();
             addressBook.addContacts(contact)
             $(".form-contacts").hide();
-            $("#add-con").show();        }
+                    }
         
 
     })
