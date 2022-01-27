@@ -5,6 +5,9 @@ function AddressBook(){
 
     }
     this.contactId = 0;
+    this.owner ={
+
+    }
 }
 
     //Method For Creating Contact Id
@@ -27,6 +30,18 @@ AddressBook.prototype.findContacts = function(id){
     return false
 };
 
+    //Method For Deleting Contacts
+AddressBook.prototype.deleteContact = function(id){
+    if(this.contacts[id] === undefined){
+        return false
+    }
+    delete this.contacts[id]
+    return true
+};
+    //Methos For Adding the Owner
+AddressBook.prototype.addOwner = function(owner){
+    this.owner[owner.firstName] = owner; 
+}
 
 // Business Logic For The Contacts 
 function Contacts(firstName , lastName , phoneNumber){
@@ -37,3 +52,12 @@ function Contacts(firstName , lastName , phoneNumber){
 Contacts.prototype.fullName = function(){
     return this.firstName + " " + this.lastName
 };
+
+// Business logic for the owner
+function Owner(firstName , lastName , phoneNumber , age , nationality){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.nationality = nationality;
+    this.phoneNumber = phoneNumber;
+    this.age = age;
+}
