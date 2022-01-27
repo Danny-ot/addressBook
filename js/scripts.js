@@ -54,10 +54,11 @@ Contacts.prototype.fullName = function(){
 };
 
 // Business logic for the owner
-function Owner(firstName , lastName , phoneNumber , age , nationality){
+function Owner(firstName , lastName , phoneNumber , dob , nationality){
     this.firstName = firstName;
     this.lastName = lastName;
     this.nationality = nationality;
     this.phoneNumber = phoneNumber;
-    this.age = age;
+    this.dob = dob;
 }
+

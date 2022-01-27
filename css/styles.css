@@ -1,3 +1,10 @@
 body{
  
 }
+label{
+    font-size: large;
+}
+.warn{
+    color: red;
+    font-size: 17px;
+}
