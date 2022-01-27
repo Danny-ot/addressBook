@@ -11,13 +11,21 @@ function AddressBook(){
 AddressBook.prototype.assignId = function(){
     this.contactId += 1
     return this.contactId
-}
+};
 
     //Method for Adding contacts
 AddressBook.prototype.addContacts = function(contact){
     contact.id = this.assignId();
     this.contacts[contact.id] = contact;
-}
+};
+
+    //Method For Finding Contacts
+AddressBook.prototype.findContacts = function(id){
+    if(this.contacts[id] !== undefined){
+        return this.contacts[id]
+    }
+    return false
+};
 
 
 // Business Logic For The Contacts 
@@ -28,4 +36,4 @@ function Contacts(firstName , lastName , phoneNumber){
 }
 Contacts.prototype.fullName = function(){
     return this.firstName + " " + this.lastName
-}
+};
