@@ -44,10 +44,11 @@ AddressBook.prototype.addOwner = function(owner){
 }
 
 // Business Logic For The Contacts 
-function Contacts(firstName , lastName , phoneNumber){
+function Contacts(firstName , lastName , phoneNumber , nationality){
     this.firstName = firstName;
     this.lastName = lastName;
     this.phoneNumber = phoneNumber;
+    this.nationality = nationality;
 }
 Contacts.prototype.fullName = function(){
     return this.firstName + " " + this.lastName

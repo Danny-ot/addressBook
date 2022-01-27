@@ -11,9 +11,14 @@ $(document).ready(function(){
 
         let owner = new Owner(firstName , lastName , phoneNumber , dob , nationality);
         if(firstName === "" || lastName === "" || phoneNumber === "" || nationality === "" || dob === ""){
-            
+            $(".warn").show();
+        }else{
+            $(".warn").hide();
+            addressBook.addOwner(owner)
+            $(".form-owner").hide();
+            $("#add-con").show();
         }
-        addressBook.addOwner(owner)
+        
 
     })
 })
