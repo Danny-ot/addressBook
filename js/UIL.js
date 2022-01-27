@@ -1,6 +1,9 @@
 let addressBook = new AddressBook();
 
 $(document).ready(function(){
+
+
+    //Owners-form
     $("#owner-form").submit(function(event){
         event.preventDefault();
         let firstName = $("#owner-firstname").val();
@@ -21,8 +24,32 @@ $(document).ready(function(){
         
 
     })
+
+    //Add Button
     $("#add").click(function(){
         $(".form-contacts").show();
         $("#add-con").hide();
     })
+
+    //Contacts Form 
+    $("#contact-form").submit(function(event){
+        event.preventDefault();
+        let firstName = $("#contact-firstname").val();
+        let lastName = $("#contact-lastname").val();
+        let phoneNumber = $("#contact-phone").val();
+        let nationality = $("#contact-nationality").val();
+
+        let contact = new Contacts(firstName , lastName , phoneNumber , nationality);
+        if(firstName === "" || lastName === "" || phoneNumber === "" || nationality === "" ){
+            $(".warn").show();
+        }else{
+            $(".warn").hide();
+            addressBook.addContacts(contact)
+            $(".form-contacts").hide();
+            $("#add-con").show();        }
+        
+
+    })
+
+
 })
