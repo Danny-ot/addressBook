@@ -17,7 +17,18 @@ $(document).ready(function(){
             $(".warn").show();
         }else{
             $(".warn").hide();
-            addressBook.addOwner(owner)
+            addressBook.addOwner(owner);
+
+            const fullName =  addressBook.owner[Object.keys(addressBook.owner)[0]].fullName();
+            const ownerNationality = addressBook.owner[Object.keys(addressBook.owner)[0]].nationality;
+            const ownerDob = addressBook.owner[Object.keys(addressBook.owner)[0]].dob;
+            const ownerPhone =addressBook.owner[Object.keys(addressBook.owner)[0]].phoneNumber;
+
+            $("#owner-database-fullName").text(fullName)
+            $("#owner-database-nationality").text(ownerNationality);
+            $("#owner-database-dob").text(ownerDob);
+            $("#owner-database-phone").text(ownerPhone);
+
             $(".form-owner").hide();
             $("#add-con").show();
         }
@@ -27,6 +38,7 @@ $(document).ready(function(){
 
     //Add Button
     $("#add").click(function(){
+        $(".database").hide();
         $(".form-contacts").show();
         
     })
@@ -44,12 +56,17 @@ $(document).ready(function(){
             $(".warn").show();
         }else{
             $(".warn").hide();
-            addressBook.addContacts(contact)
+            addressBook.addContacts(contact);
             $(".form-contacts").hide();
                     }
         
 
     })
-
+    $("#database").click(function(){
+        $(".form-contacts").hide();
+        $(".database").show();
+    })
 
 })
+
+

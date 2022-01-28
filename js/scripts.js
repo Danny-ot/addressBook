@@ -20,6 +20,9 @@ AddressBook.prototype.assignId = function(){
 AddressBook.prototype.addContacts = function(contact){
     contact.id = this.assignId();
     this.contacts[contact.id] = contact;
+    $(".contact-database").append(
+        "<div class = 'col-md-4 mt-3 data'><p><b>Contact Id: </b>" + "" + contact.id  + "</p><p><b>Full Name: </b>" +contact.fullName() + "</p><p><b>PhoneNumber: </b>" +  contact.phoneNumber + "</p><p><b>Nationality: </b>"  + contact.nationality + "</p><div>"
+    )
 };
 
     //Method For Finding Contacts
@@ -62,4 +65,7 @@ function Owner(firstName , lastName , phoneNumber , dob , nationality){
     this.phoneNumber = phoneNumber;
     this.dob = dob;
 }
+Owner.prototype.fullName = function(){
+    return this.firstName + " " + this.lastName
+};
 
