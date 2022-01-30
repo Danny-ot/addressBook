@@ -96,40 +96,44 @@
 
             <!-- Database -->
 
-            <div class="database col-md-5">
+            <div class="database">
                 <h3 class="mt-2">My database</h3>
                 <div class="form-group">
-                    <select name="database-option" class="form-control">
+                    <select name="database-option" class="form-control col-md-5" id="database-select">
+                        <option value="none">None</option>
                         <option value="owner">Owner</option>
                         <option value="contacts">Contacts</option>
                     </select>
+                    <button class="btn-primary btn mt-2 ml-1" id="select-btn" type="button">Check!!</button>
                 </div>
 
+                <!-- Owner Database -->
+                <div class="owner-database">
+                    <h5>My Database</h5>
+                    <p>
+                        <b>Fullname: </b><span id="owner-database-fullName"></span>
+                    </p>
+                    <p><b>PhoneNumber: </b><span id="owner-database-phone"></span></p>
+                    <p><b>Nationality: </b><span id="owner-database-nationality"></span></p>
+                    <p> <b>Date-Of-Birth: </b><span id="owner-database-dob"></span>
+
+                    </p>
+
+                </div>
+
+                <!-- Contacts DataBase -->
+                <div class="my-contact-database">
+                    <h5>My Contacts Database</h5>
+                    <div class="contact-database row">
+
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
 
-        <!-- Owner Database -->
-        <div class="owner-database">
-            <h5>My Database</h5>
-            <p>
-                <b>Fullname: </b><span id="owner-database-fullName"></span>
-            </p>
-            <p><b>PhoneNumber: </b><span id="owner-database-phone"></span></p>
-            <p><b>Nationality: </b><span id="owner-database-nationality"></span></p>
-            <p> <b>Date-Of-Birth: </b><span id="owner-database-dob"></span>
-                
-            </p>
-
-        </div>
-
-        <!-- Contacts DataBase -->
-        <div class="my-contact-database">
-            <h5>My Contacts Database</h5>
-            <div class="contact-database row">
-
-            </div>
-        </div>
 
 
     </div>
