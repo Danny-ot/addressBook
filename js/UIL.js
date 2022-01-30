@@ -70,19 +70,23 @@ $(document).ready(function () {
 
     })
 
-    
-    $("#select-btn").click(function(){
+
+    $("#select-btn").click(function () {
         const databaseValue = $("#database-select").find(":selected").text();
-    if (databaseValue == "Owner"){
-        $(".my-contact-database").hide();
-        $(".owner-database").show();
-    }else{
-        $(".owner-database").hide();
-        $(".my-contact-database").show();
-    }
+        if (databaseValue == "Owner") {
+            $(".my-contact-database").hide();
+            $(".owner-database").show();
+        } else {
+            $(".owner-database").hide();
+            $(".my-contact-database").show();
+        }
+
+
+
+    })
+
+    $("#search").click(function(){
         
-
-
     })
 
 
