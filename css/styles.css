@@ -1,5 +1,5 @@
 body{
- 
+    background:linear-gradient(to right , rgb(184, 197, 211) , rgb(229, 233, 236))
 }
 label{
     font-size: large;

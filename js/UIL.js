@@ -43,6 +43,19 @@ $(document).ready(function () {
 
     })
 
+    // Function For The Displaying Of Contacts
+    function displayContents(addressb) {
+        let conDatabase = $(".contact-database");
+        let htmlString = "";
+        Object.keys(addressb.contacts).forEach(function (key) {
+            const contact = addressb.findContacts(key);
+            htmlString += "<li class = 'col-md-4 mt-3 data' id = " + contact.id + "><p><b>Contact Id: </b>" + "" + contact.id + "</p><p><b>Full Name: </b>" + contact.fullName() + "</p><p><b>PhoneNumber: </b>" + contact.phoneNumber + "</p><p><b>Nationality: </b>" + contact.nationality + "</p></li>"
+        })
+        conDatabase.html(htmlString)
+    }
+
+
+
     //Contacts Form 
     $("#contact-form").submit(function (event) {
         event.preventDefault();
@@ -57,9 +70,15 @@ $(document).ready(function () {
         } else {
             $(".warn").hide();
             addressBook.addContacts(contact);
+            displayContents(addressBook)
             $(".form-contacts").hide();
+            $("#contact-firstname").val("");
+            $("#contact-lastname").val("");
+            $("#contact-phone").val("");
+            $("#contact-nationality").val("");
         }
-
+        
+       
 
     })
 
@@ -85,8 +104,28 @@ $(document).ready(function () {
 
     })
 
-    $("#search").click(function(){
-        
+    //Search And Delete And All UIL
+    $("#search").click(function () {
+        let searchCon = $("#del-sea").val();
+        const contact = addressBook.findContacts(searchCon);
+        $(".contact-database").hide();
+        if (contact ===  false) {
+            $("#searched-con").html("<li class = 'col-md-4 mt-3 data'><b> Contact does not exist</b></li>")
+        } else {
+            $("#searched-con").html("<li class = 'col-md-4 mt-3 data' id = " + contact.id + "><p><b>Contact Id: </b>" + "" + contact.id + "</p><p><b>Full Name: </b>" + contact.fullName() + "</p><p><b>PhoneNumber: </b>" + contact.phoneNumber + "</p><p><b>Nationality: </b>" + contact.nationality + "</p></li>")
+        }
+        $("#searched-con").show();
+    })
+
+    $("#all").click(function () {
+        $("#searched-con").hide();
+        $(".contact-database").show();
+    })
+
+    $("#delete").click(function () {
+        let deleteCon = $("#del-sea").val();
+        addressBook.deleteContact(deleteCon);
+        $(" #" +deleteCon).remove();
     })
 
 
