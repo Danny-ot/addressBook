@@ -1,7 +1,38 @@
 let addressBook = new AddressBook();
 
-$(document).ready(function () {
+ // Function For The Displaying Of Contacts
+ function displayContents(addressb) {
+    let conDatabase = $("#contact-database");
+    let htmlString = "";
+    Object.keys(addressb.contacts).forEach(function (key) {
+        const contact = addressb.findContacts(key);
+        htmlString += "<li class = 'mt-3 data' id = " + contact.id + ">" + contact.fullName() + "</li>"
+    })
+    conDatabase.html(htmlString)
+}
 
+//Function For Attaching Contact Listener
+function attachContactListener(){
+    $("ul#contact-database").on("click" , "li" , function(){
+        showContacts(this.id);
+    })
+} 
+
+//Function For Showing Contacts
+function showContacts(id){
+    let contact = addressBook.findContacts(id);
+    $("#show-contacts").show();
+    $(".firstname").html(contact.firstName);
+    $(".lastname").html(contact.lastName);
+    $(".phone-no").html(contact.phoneNumber);
+    $(".nationality").html(contact.nationality);
+    let button = $("#contacts-button");
+    button.empty();
+    button.append("<button class = 'deleteButton' id = " + contact.id + ">Delete</button>")
+}
+
+$(document).ready(function () {
+    attachContactListener();
 
     //Owners-form
     $("#owner-form").submit(function (event) {
@@ -43,17 +74,6 @@ $(document).ready(function () {
 
     })
 
-    // Function For The Displaying Of Contacts
-    function displayContents(addressb) {
-        let conDatabase = $(".contact-database");
-        let htmlString = "";
-        Object.keys(addressb.contacts).forEach(function (key) {
-            const contact = addressb.findContacts(key);
-            htmlString += "<li class = 'col-md-4 mt-3 data' id = " + contact.id + "><p><b>Contact Id: </b>" + "" + contact.id + "</p><p><b>Full Name: </b>" + contact.fullName() + "</p><p><b>PhoneNumber: </b>" + contact.phoneNumber + "</p><p><b>Nationality: </b>" + contact.nationality + "</p></li>"
-        })
-        conDatabase.html(htmlString)
-    }
-
 
 
     //Contacts Form 
@@ -70,7 +90,7 @@ $(document).ready(function () {
         } else {
             $(".warn").hide();
             addressBook.addContacts(contact);
-            displayContents(addressBook)
+            displayContents(addressBook);
             $(".form-contacts").hide();
             $("#contact-firstname").val("");
             $("#contact-lastname").val("");
@@ -95,39 +115,17 @@ $(document).ready(function () {
         if (databaseValue == "Owner") {
             $(".my-contact-database").hide();
             $(".owner-database").show();
-        } else {
+        } else if(databaseValue == "Contacts") {
             $(".owner-database").hide();
             $(".my-contact-database").show();
+        }else{
+            $(".owner-database").hide();
+            $(".my-contact-database").hide();
         }
 
 
 
     })
-
-    //Search And Delete And All UIL
-    $("#search").click(function () {
-        let searchCon = $("#del-sea").val();
-        const contact = addressBook.findContacts(searchCon);
-        $(".contact-database").hide();
-        if (contact ===  false) {
-            $("#searched-con").html("<li class = 'col-md-4 mt-3 data'><b> Contact does not exist</b></li>")
-        } else {
-            $("#searched-con").html("<li class = 'col-md-4 mt-3 data' id = " + contact.id + "><p><b>Contact Id: </b>" + "" + contact.id + "</p><p><b>Full Name: </b>" + contact.fullName() + "</p><p><b>PhoneNumber: </b>" + contact.phoneNumber + "</p><p><b>Nationality: </b>" + contact.nationality + "</p></li>")
-        }
-        $("#searched-con").show();
-    })
-
-    $("#all").click(function () {
-        $("#searched-con").hide();
-        $(".contact-database").show();
-    })
-
-    $("#delete").click(function () {
-        let deleteCon = $("#del-sea").val();
-        addressBook.deleteContact(deleteCon);
-        $(" #" +deleteCon).remove();
-    })
-
 
 
 })

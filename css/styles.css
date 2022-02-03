@@ -18,12 +18,16 @@ label{
 .database{
     display: none;
 }
-.data p{
+.data{
     font-size: 17px;
+    font-weight: bold;
 }
 .owner-database{
     display: none;
 }
 .my-contact-database{
+    display: none;
+}
+#show-contacts{
     display: none;
 }
