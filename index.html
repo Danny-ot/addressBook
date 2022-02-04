@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="phone">Phone Number </label>
-                    <input type="text" id="owner-phone" class="form-control">
+                    <input type="number" id="owner-phone" class="form-control">
                 </div>
                 <div class="form-group mt-3">
                     <label for="Date-Of-Birth">Date-Of-Birth </label>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="phone">Phone Number </label>
-                        <input type="text" id="contact-phone" class="form-control">
+                        <input type="number" id="contact-phone" class="form-control">
                     </div>
                     <div class="form-group mt-3">
                         <label for="Nationality">Nationality: </label>
@@ -99,7 +99,7 @@
             <div class="database">
                 <h3 class="mt-2">My database</h3>
                 <div class="form-group">
-                    <select name="database-option" class="form-control col-md-5" id="database-select">
+                    <select name="database-option" class="form-control col-md-5" id="database-select" style="cursor: pointer;">
                         <option value="none">None</option>
                         <option value="owner">Owner</option>
                         <option value="contacts">Contacts</option>
@@ -123,17 +123,24 @@
 
                 <!-- Contacts DataBase -->
                 <div class="my-contact-database">
-                    <h5 class="ml-3"><b> My Contacts Database</b></h5>
+                    <h5><b> My Contacts Database</b></h5>
+                    <div class="row">
+                        <input type="search" class="form-control col-md-4 ml-3" id="searched-input"><button class="btn btn-primary ml-1" id="search" type="button">Search</button>
+                    
+                    </div>
                     <ul id="contact-database">
+                    </ul>
 
+                    <ul id="show-searched">
+                    
                     </ul>
                     <!-- Showing Contacts  -->
-                    <div id="show-contacts">
+                    <div id="show-contacts" class="p-4 bg-dark text-light">
                         <p>FirstName: <span class="firstname"></span></p>
                         <p>LastName: <span class="lastname"></span></p>
                         <p>PhoneNumber: <span class="phone-no"></span></p>
                         <p>Nationality: <span class="nationality"></span></p>
-                        <div id="contacts-button">
+                        <div id="delete-contacts-button">
 
                         </div>
                     </div>

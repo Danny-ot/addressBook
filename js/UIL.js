@@ -1,7 +1,7 @@
 let addressBook = new AddressBook();
 
- // Function For The Displaying Of Contacts
- function displayContents(addressb) {
+// Function For The Displaying Of Contacts
+function displayContents(addressb) {
     let conDatabase = $("#contact-database");
     let htmlString = "";
     Object.keys(addressb.contacts).forEach(function (key) {
@@ -12,23 +12,36 @@ let addressBook = new AddressBook();
 }
 
 //Function For Attaching Contact Listener
-function attachContactListener(){
-    $("ul#contact-database").on("click" , "li" , function(){
+function attachContactListener() {
+
+    //For The li listener
+    $("ul#contact-database").on("click", "li", function () {
         showContacts(this.id);
     })
-} 
+
+    $("ul#show-searched").on("click", "li", function () {
+        showContacts(this.id)
+    })
+
+    //For The Delete Listener
+    $("#delete-contacts-button").on("click", ".deleteButton", function () {
+        addressBook.deleteContact(this.id);
+        $("#show-contacts").hide();
+        displayContents(addressBook);
+    })
+}
 
 //Function For Showing Contacts
-function showContacts(id){
+function showContacts(id) {
     let contact = addressBook.findContacts(id);
     $("#show-contacts").show();
     $(".firstname").html(contact.firstName);
     $(".lastname").html(contact.lastName);
     $(".phone-no").html(contact.phoneNumber);
     $(".nationality").html(contact.nationality);
-    let button = $("#contacts-button");
+    let button = $("#delete-contacts-button");
     button.empty();
-    button.append("<button class = 'deleteButton' id = " + contact.id + ">Delete</button>")
+    button.append("<button class = 'deleteButton btn btn-light' id = " + contact.id + ">Delete</button>")
 }
 
 $(document).ready(function () {
@@ -97,8 +110,8 @@ $(document).ready(function () {
             $("#contact-phone").val("");
             $("#contact-nationality").val("");
         }
-        
-       
+
+
 
     })
 
@@ -115,16 +128,35 @@ $(document).ready(function () {
         if (databaseValue == "Owner") {
             $(".my-contact-database").hide();
             $(".owner-database").show();
-        } else if(databaseValue == "Contacts") {
+        } else if (databaseValue == "Contacts") {
             $(".owner-database").hide();
             $(".my-contact-database").show();
-        }else{
+            $("ul#show-searched").hide();
+            $("ul#contact-database").show();
+
+        } else {
             $(".owner-database").hide();
             $(".my-contact-database").hide();
         }
 
 
 
+    })
+
+    $("#search").click(function () {
+        let htmlElement = $("ul#show-searched");
+        let htmlString = "";
+        let searchedInput = $("#searched-input").val();
+        let contact = addressBook.findContacts(searchedInput);
+        if (contact === false) {
+            htmlString = "<li class = 'mt-3 data'>There is no such contact</li>";
+        } else {
+            htmlString = "<li class = 'mt-3 data' id = " + contact.id + ">" + contact.fullName() + "</li>";
+
+        }
+        $("ul#contact-database").hide();
+        htmlElement.show();
+        htmlElement.html(htmlString);
     })
 
 

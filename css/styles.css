@@ -30,4 +30,13 @@ label{
 }
 #show-contacts{
     display: none;
+    font-size: large;
+}
+#show-searched{
+    display: none;
+}
+#refresh-message{
+    
+    color: red;
+    list-style-type: none;
 }
